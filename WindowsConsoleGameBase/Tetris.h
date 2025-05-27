@@ -9,9 +9,10 @@ class Tetris : public Engine {
 	const size_t m_Height = 26;
 	GameField m_GameField;
 	Figure* m_Figure;
+	bool m_End = false;
 public:
 	Tetris();
-	bool end() const { return false; }
+	bool end() const;
 	void on_button_press(const int button);
 	void update(const int dt);
 	void render(PaintDevice& paintDevice);
