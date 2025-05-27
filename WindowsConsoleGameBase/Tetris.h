@@ -9,9 +9,10 @@ class Tetris : public Engine {
 	GameField m_GameField;
 public:
 	Tetris();
-	bool end() const {} 
+	bool end() const { return false; }
 	void on_button_press(const int button) {}
 	void update(const int dt) {}
 	void render(PaintDevice& paintDevice) {}
+	~Tetris() {}
 };
 
