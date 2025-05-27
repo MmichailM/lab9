@@ -13,5 +13,6 @@ public:
 	void resize(size_t width, size_t height);
 	void render(PaintDevice& paintDevice);
 	bool has_collision(const Figure& figure);
+	void merge(const Figure& figure);
 };
 

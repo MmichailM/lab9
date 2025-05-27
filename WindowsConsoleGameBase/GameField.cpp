@@ -48,6 +48,20 @@ bool GameField::has_collision(const Figure& figure) {
 	for (const Point& point : figure.get_body()) {
 		if (point.x + position.x < 1 || point.x + position.x > m_Width - 2) return true;
 		if (point.y + position.y < 1 || point.y + position.y > m_Height - 2) return true;
+		if (m_Field[point.y + position.y - 1][point.x + position.x - 1] != 0x0387) return true;
 	}
 	return false;
+}
+
+void GameField::merge(const Figure& figure) {
+	Point position = figure.get_position();
+	for (const Point& point : figure.get_body()) m_Field[point.y + position.y - 1][point.x + position.x - 1] = 0x25D8;
+	for (size_t i = 0; i < m_Field.size(); i++) {
+		bool isfool = true;
+		for (size_t j = 0; j < m_Field[i].size(); j++) isfool = isfool && m_Field[i][j] != 0x0387;
+		if (isfool) {
+			for (size_t j = i; j > 0; j--) m_Field[j] = m_Field[j - 1];
+			m_Field[0] = vector<wchar_t>(m_Width - 2, 0x0387);
+		}
+	}
 }

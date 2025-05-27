@@ -6,6 +6,7 @@ Tetris::Tetris() {
 	m_Figure = new IBlock(Point(5, 1));
 	track_key(VK_LEFT);
 	track_key(VK_RIGHT);
+	track_key(VK_DOWN);
 }
 
 void Tetris::render(PaintDevice& paintDevice) {
@@ -14,8 +15,13 @@ void Tetris::render(PaintDevice& paintDevice) {
 }
 
 void Tetris::update(const int dt) {
+	m_Figure->backup();
 	m_Figure->update(dt);
-	if (m_GameField.has_collision(*m_Figure)) m_Figure = new IBlock(Point(5, 1));
+	if (m_GameField.has_collision(*m_Figure)) {
+		m_Figure->restore();
+		m_GameField.merge(*m_Figure);
+		m_Figure = new IBlock(Point(5, 1));
+	}
 }
 
 void Tetris::on_button_press(const int button) {
@@ -26,6 +32,9 @@ void Tetris::on_button_press(const int button) {
 		break;
 	case VK_RIGHT:
 		m_Figure->move_right();
+		break;
+	case VK_DOWN:
+		m_Figure->boost();
 		break;
 	}
 	if (m_GameField.has_collision(*m_Figure)) m_Figure->restore();

@@ -28,5 +28,6 @@ public:
 	void set_position(Point position);
 	void backup();
 	void restore();
+	void boost();
 };
 
