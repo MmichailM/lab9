@@ -57,6 +57,9 @@
     <ClCompile Include="Tetris.cpp">
       <Filter>Source Files\Tetris</Filter>
     </ClCompile>
+    <ClCompile Include="GameField.cpp">
+      <Filter>Source Files\Tetris</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files\Examples</Filter>
     </ClInclude>
     <ClInclude Include="Tetris.h">
+      <Filter>Header Files\Tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="GameField.h">
       <Filter>Header Files\Tetris</Filter>
     </ClInclude>
   </ItemGroup>
