@@ -60,6 +60,12 @@
     <ClCompile Include="GameField.cpp">
       <Filter>Source Files\Tetris</Filter>
     </ClCompile>
+    <ClCompile Include="Figure.cpp">
+      <Filter>Source Files\Tetris</Filter>
+    </ClCompile>
+    <ClCompile Include="IBlock.cpp">
+      <Filter>Source Files\Tetris</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -84,6 +90,12 @@
       <Filter>Header Files\Tetris</Filter>
     </ClInclude>
     <ClInclude Include="GameField.h">
+      <Filter>Header Files\Tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="Figure.h">
+      <Filter>Header Files\Tetris</Filter>
+    </ClInclude>
+    <ClInclude Include="IBlock.h">
       <Filter>Header Files\Tetris</Filter>
     </ClInclude>
   </ItemGroup>
