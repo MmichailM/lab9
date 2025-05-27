@@ -1,0 +1,206 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+abstract class Engine {
+	+~Engine()
+	-m_PaintDevice : PaintDevice
+	#paint_device() : PaintDevice&
+	#{abstract} end() : bool {query}
+	+run() : int
+	-m_PressedKeys : std::set<int>
+	-m_TrackedKeys : std::set<int>
+	#{abstract} on_button_press(const int button) : void
+	#{abstract} render(PaintDevice& paintDevice) : void
+	#track_key(const int key) : void
+	#untrack_key(const int key) : void
+	#{abstract} update(const int dt) : void
+	-uppdateInput() : void
+}
+
+
+class Figure {
+	+Figure(Point position)
+	+get_position() : Point {query}
+	#m_Position : Point
+	#m_PositionBackup : Point
+	#m_TimeForUpdate : double
+	#m_TimeFromLastUpdatec : double
+	#m_CurrentRotate : size_t
+	#m_CurrentRotateBackup : size_t
+	+get_body() : vector<Point>& {query}
+	#m_Body : vector<vector<Point>>
+	+backup() : void
+	+boost() : void
+	+move_left() : void
+	+move_right() : void
+	+render(PaintDevice& paintDevice) : void
+	+restore() : void
+	+rotate() : void
+	+set_position(Point position) : void
+	+update(double dt) : void
+}
+
+
+class GameField {
+	+has_collision(const Figure& figure) : bool
+	-m_Height : size_t
+	-m_Width : size_t
+	-m_Field : vector<vector<wchar_t>>
+	+merge(const Figure& figure) : void
+	+render(PaintDevice& paintDevice) : void
+	+resize(size_t width, size_t height) : void
+}
+
+
+class IBlock {
+	+IBlock(Point position)
+}
+
+
+class PaintDevice {
+	+PaintDevice()
+	+~PaintDevice()
+	-m_Buffer : CHAR_INFO*
+	-m_BufferCoord : COORD
+	-m_BufferSize : COORD
+	-m_ConsoleOut : HANDLE
+	-m_WriteRegion : SMALL_RECT
+	-m_Size : Size
+	-m_Ready : bool
+	+ready() : bool {query}
+	+clear() : void
+	+render() : void
+	+resize(const Size& size) : void
+	+set_char(const Vector2& position, wchar_t c) : void
+	+get_char(const Vector2& position) : wchar_t
+}
+
+
+class Size {
+	+Size(long long int width, long long int height)
+	+area() : PointType {query}
+	+height() : PointType {query}
+	+width() : PointType {query}
+	+height() : PointType&
+	+width() : PointType&
+	-m_Height : long long int
+	-m_Width : long long int
+}
+
+
+class Square {
+	+Square(const Vector2& position, const Size& size)
+	-m_Size : Size
+	+bottom_right() : Vector2 {query}
+	-m_Position : Vector2
+	+top_left() : Vector2 {query}
+	+collide(const Square& other) : bool {query}
+	+hit(const Vector2& point) : bool {query}
+}
+
+
+class Tetris {
+	+Tetris()
+	+~Tetris()
+	-m_Figure : Figure*
+	-m_GameField : GameField
+	+end() : bool {query}
+	-m_End : bool
+	-m_Height : const size_t
+	-m_Width : const size_t
+	+on_button_press(const int button) : void
+	+render(PaintDevice& paintDevice) : void
+	+update(const int dt) : void
+}
+
+
+class Vector2 {
+	+Vector2()
+	+Vector2(long long int x, long long int y)
+	+x() : PointType {query}
+	+y() : PointType {query}
+	+x() : PointType&
+	+y() : PointType&
+	+operator*(const Vector2::PointType& rhs) : Vector2 {query}
+	-operator+(Vector2 lhs, const Vector2& rhs) : Vector2
+	+operator+(Vector2 lhs, const Vector2& rhs) : Vector2
+	-operator-(Vector2 lhs, const Vector2& rhs) : Vector2
+	+operator-(Vector2 lhs, const Vector2& rhs) : Vector2
+	+operator+=(const Vector2& rhs) : Vector2&
+	+operator-=(const Vector2& rhs) : Vector2&
+	+operator!=(const Vector2& lhs, const Vector2& rhs) : bool
+	-operator==(const Vector2& lhs, const Vector2& rhs) : bool
+	+operator==(const Vector2& lhs, const Vector2& rhs) : bool
+	-m_X : long long int
+	-m_Y : long long int
+	+operator<<(std::ostream& os, const Vector2& obj) : std :: ostream&
+}
+
+
+enum Engine::ErrorCode {
+	paint_device_not_ready
+	success
+}
+
+
+class Point {
+	+Point(int x, int y)
+	+x : int
+	+y : int
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+Engine <|-- Tetris
+
+
+Figure <|-- IBlock
+
+
+
+
+
+/' Aggregation relationships '/
+
+Engine *-- PaintDevice
+
+
+Figure "3" *-- Point
+
+
+PaintDevice *-- Size
+
+
+Square *-- Size
+
+
+Square *-- Vector2
+
+
+Tetris o-- Figure
+
+
+Tetris *-- GameField
+
+
+
+
+
+
+/' Nested objects '/
+
+Engine +-- Engine::ErrorCode
+
+
+
+
+@enduml

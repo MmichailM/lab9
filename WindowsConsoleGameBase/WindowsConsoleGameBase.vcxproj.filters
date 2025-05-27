@@ -98,5 +98,8 @@
     <ClInclude Include="IBlock.h">
       <Filter>Header Files\Tetris</Filter>
     </ClInclude>
+    <ClInclude Include="123.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
