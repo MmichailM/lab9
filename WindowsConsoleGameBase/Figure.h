@@ -16,6 +16,7 @@ protected:
 	double m_TimeFromLastUpdatec = 0;
 	double m_TimeForUpdate = 500; //полсекунды
 	vector<Point> m_Body;
+	Point m_PositionBackup;
 public:
 	Figure(Point position) : m_Position(position) {}
 	void update(double dt);
@@ -25,5 +26,7 @@ public:
 	const vector<Point>& get_body() const;
 	Point get_position() const;
 	void set_position(Point position);
+	void backup();
+	void restore();
 };
 

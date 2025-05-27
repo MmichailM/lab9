@@ -35,3 +35,11 @@ Point Figure::get_position() const {
 void Figure::set_position(Point position) {
 	m_Position = position;
 }
+
+void Figure::backup() {
+	m_PositionBackup = m_Position;
+}
+
+void Figure::restore() {
+	m_Position = m_PositionBackup;
+}
