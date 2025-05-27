@@ -54,6 +54,9 @@
     <ClCompile Include="ExampleGame.cpp">
       <Filter>Source Files\Examples</Filter>
     </ClCompile>
+    <ClCompile Include="Tetris.cpp">
+      <Filter>Source Files\Tetris</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="ExampleGame.h">
       <Filter>Header Files\Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Tetris.h">
+      <Filter>Header Files\Tetris</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
