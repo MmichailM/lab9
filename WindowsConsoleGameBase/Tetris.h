@@ -12,7 +12,7 @@ public:
 	bool end() const { return false; }
 	void on_button_press(const int button) {}
 	void update(const int dt) {}
-	void render(PaintDevice& paintDevice) {}
-	~Tetris() {}
+	void render(PaintDevice& paintDevice);
+	virtual ~Tetris() {}
 };
 
