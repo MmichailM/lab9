@@ -3,6 +3,7 @@
 void GameField::resize(size_t width, size_t height) {
 	m_Width = width;
 	m_Height = height;
+	m_Field = vector<vector<wchar_t>>(m_Height - 2, vector<wchar_t>(m_Width - 2, 0x0387));
 }
 
 void GameField::render(PaintDevice& paintDevice) {
@@ -33,4 +34,11 @@ void GameField::render(PaintDevice& paintDevice) {
 	paintDevice.set_char(v13, 0x255A);
 	Vector2 v14(m_Width - 1, m_Height - 1);
 	paintDevice.set_char(v14, 0x255D);
+
+	for (int y = 0; y < m_Field.size(); y++) {
+		for (int x = 0; x < m_Field[y].size(); x++) {
+			Vector2 v(x + 1, y + 1);
+			paintDevice.set_char(v, m_Field[y][x]);
+		}
+	}
 }
