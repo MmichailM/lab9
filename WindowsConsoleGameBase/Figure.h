@@ -15,8 +15,10 @@ protected:
 	Point m_Position;
 	double m_TimeFromLastUpdatec = 0;
 	double m_TimeForUpdate = 500; //полсекунды
-	vector<Point> m_Body;
+	vector<vector<Point>> m_Body;
+	size_t m_CurrentRotate = 0;
 	Point m_PositionBackup;
+	size_t m_CurrentRotateBackup = 0;
 public:
 	Figure(Point position) : m_Position(position) {}
 	void update(double dt);
@@ -29,5 +31,6 @@ public:
 	void backup();
 	void restore();
 	void boost();
+	void rotate();
 };
 
