@@ -23,3 +23,15 @@ void Figure::move_right() {
 void Figure::move_left() {
 	m_Position.x--;
 }
+
+const vector<Point>& Figure::get_body() const {
+	return m_Body;
+}
+
+Point Figure::get_position() const {
+	return m_Position;
+}
+
+void Figure::set_position(Point position) {
+	m_Position = position;
+}

@@ -22,5 +22,8 @@ public:
 	void render(PaintDevice& paintDevice);
 	void move_right();
 	void move_left();
+	const vector<Point>& get_body() const;
+	Point get_position() const;
+	void set_position(Point position);
 };
 

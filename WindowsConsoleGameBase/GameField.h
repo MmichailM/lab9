@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.h"
 #include <vector>
+#include "IBlock.h"
 
 using namespace std;
 
@@ -11,5 +12,6 @@ class GameField {
 public:
 	void resize(size_t width, size_t height);
 	void render(PaintDevice& paintDevice);
+	bool has_collision(const Figure& figure);
 };
 

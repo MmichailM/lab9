@@ -15,6 +15,9 @@ void Tetris::render(PaintDevice& paintDevice) {
 
 void Tetris::update(const int dt) {
 	m_Figure->update(dt);
+	if (m_GameField.has_collision(*m_Figure)) {
+		m_Figure = new IBlock(Point(5, 1));
+	}
 }
 
 void Tetris::on_button_press(const int button) {
